@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Effect</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+            background-color: #fadcdc;
+        }
+
+        /* =======================================================
+           LOADING PAGE STYLES (UNIFIED VERTICAL ANIMATION)
+           ======================================================= */
+        .loading-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            z-index: 100;
+            overflow: hidden;
+            animation: hideLoader 0s linear 2.2s forwards;
+            background-color: transparent;
+        }
+
+        .bars-container {
+            display: flex;
+            flex-direction: row; 
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .bar {
+            flex: 1;
+            height: 115vh; 
+            width: auto;
+            transform-origin: top center;
+            transform: scaleX(1.02);
+            will-change: transform;
+            
+            border-bottom-left-radius: 100px;
+            border-bottom-right-radius: 100px;
+            
+            position: relative;
+            animation: slideUpBar 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation-delay: calc(0.8s + (var(--i) * 0.04s));
+        }
+
+        /* =======================================================
+           MOBILE FIX: Hide 2 bars from each side, keeping the middle 5.
+           ======================================================= */
+        @media (max-width: 1023px) {
+            .bar:nth-child(-n+2), /* Hides bar 1 and 2 */
+            .bar:nth-child(n+8)   /* Hides bar 8 and 9 */
+            {
+                display: none;
+            }
+        }
+
+        .bar:nth-child(5) { z-index: 5; }
+        .bar:nth-child(4), .bar:nth-child(6) { z-index: 4; }
+        .bar:nth-child(3), .bar:nth-child(7) { z-index: 3; }
+        .bar:nth-child(2), .bar:nth-child(8) { z-index: 2; }
+        .bar:nth-child(1), .bar:nth-child(9) { z-index: 1; }
+
+        .bar:nth-child(-n+4) { box-shadow: -8px 0 16px rgba(0, 0, 0, 0.14); }
+        .bar:nth-child(5) { box-shadow: -8px 0 16px rgba(0, 0, 0, 0.14), 8px 0 16px rgba(0, 0, 0, 0.14); }
+        .bar:nth-child(n+6) { box-shadow: 8px 0 16px rgba(0, 0, 0, 0.14); }
+
+        .loading-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            animation: hideContent 0.7s cubic-bezier(0.25, 1, 0.5, 1) 0.8s forwards;
+        }
+
+        .loading-center {
+            text-align: center;
+        }
+
+        .logo-text {
+            color: #ffecec;
+            font-size: 40px; 
+            font-weight: 500;
+            letter-spacing: 1px;
+            opacity: 0;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+            animation: aestheticPop 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .logo-text span {
+            color: #ff0d0d;
+        }
+
+        .enter-text {
+            color: #fecfcf;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            opacity: 0;
+            display: block; /* Shown on all screen sizes */
+            margin-top: 8px;
+            animation: fadeInSimple 0.8s ease-out 0.3s forwards;
+        }
+
+        .loading-bottom {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            color: #fecfcf;
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0;
+            animation: fadeInSimple 0.8s ease-out 0.4s forwards;
+        }
+
+        @keyframes slideUpBar {
+            0% { transform: scaleX(1.02) translateY(0); }
+            100% { transform: scaleX(1.02) translateY(-115vh); }
+        }
+
+        @keyframes hideContent {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-100vh); }
+        }
+
+        @keyframes hideLoader {
+            0% { visibility: visible; pointer-events: auto; }
+            100% { visibility: hidden; pointer-events: none; }
+        }
+
+        @keyframes aestheticPop {
+            0% { opacity: 0; transform: scale(0.85) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes fadeInSimple {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* =========================================
+           DESKTOP SCALING STYLES (min-width: 1024px)
+           ========================================= */
+        @media (min-width: 1024px) {
+            .loading-center { transform: translateY(-20px); }
+            .logo-text { font-size: 60px; gap: 0; margin-bottom: 15px; }
+            .logo-text span { margin-left: 30px; }
+            .loading-bottom { bottom: 30px; right: 40px; font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="loading-page">
+        <div class="bars-container">
+            <div class="bar" style="--i: 8; background-color: #240000;"></div>
+            <div class="bar" style="--i: 7; background-color: #300000;"></div>
+            <div class="bar" style="--i: 6; background-color: #3C0000;"></div>
+            <div class="bar" style="--i: 5; background-color: #480000;"></div>
+            <div class="bar" style="--i: 4; background-color: #540000;"></div>
+            <div class="bar" style="--i: 3; background-color: #480000;"></div>
+            <div class="bar" style="--i: 2; background-color: #3C0000;"></div>
+            <div class="bar" style="--i: 1; background-color: #300000;"></div>
+            <div class="bar" style="--i: 0; background-color: #240000;"></div>
+        </div>
+        <div class="loading-content">
+            <div class="loading-center">
+                <h1 class="logo-text">PHRASE<span>VANTAGE</span></h1>
+                <p class="enter-text">POLOCK MAJUMDER</p>
+            </div>
+            <div class="loading-bottom">SINCE 2026</div>
+        </div>
+    </div>
+
+</body>
+</html>
