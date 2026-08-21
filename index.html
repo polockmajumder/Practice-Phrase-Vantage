@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phrase Vantage</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: #270000;
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        .hero-section {
+            background-color: #270000;
+            position: relative;
+            z-index: 10;
+            border-radius: 0 0 25px 25px;
+            padding: 20px 20px 30px 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        .since-text {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 10px;
+            color: #ffffff;
+            font-weight: 300;
+        }
+
+        .brand-title {
+            margin-top: 35px;
+            margin-bottom: 25px;
+            line-height: 1;
+        }
+
+        .brand-title .phrase {
+            display: block;
+            color: #ffffff;
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .brand-title .vantage {
+            display: block;
+            color: #ff3232;
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: -2px;
+        }
+
+        .access-box {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid #5a0000;
+            margin: 0 auto 30px auto;
+            padding: 15px 15px 15px 25px;
+            width: 88%;
+            text-align: left;
+        }
+
+        .access-box p {
+            color: #e0e0e0;
+            font-size: 11px;
+            margin-bottom: 8px;
+        }
+
+        .access-box ol {
+            color: #e0e0e0;
+            font-size: 10px;
+            line-height: 1.6;
+            padding-left: 12px;
+            font-weight: 300;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 88%;
+            margin: 0 auto;
+        }
+
+        .divider .line {
+            flex: 1;
+            height: 1px;
+            background-color: #5a0000;
+        }
+
+        .divider span {
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        /* =========================================
+           ALTERNATING SECTIONS 
+           ========================================= */
+        .content-section {
+            position: relative;
+            border-radius: 0 0 25px 25px;
+            padding: 55px 20px 35px 20px; 
+            margin-top: -25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+        }
+
+        .light-bg {
+            background-color: #fcebeb;
+            color: #270000;
+            z-index: 9;
+        }
+
+        .dark-bg {
+            background-color: #270000; 
+            color: #fcebeb;           
+            z-index: 8;
+        }
+
+        .section-3 { z-index: 7; }
+        .section-4 { z-index: 6; }
+
+        /* =========================================
+           FOLDER CARD, TABS & PILLS (EXACT MATCH)
+           ========================================= */
+        .row-layout {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .folder-card {
+            background-color: #ffbebe;
+            border-radius: 8px;
+            /* Noticeable, offset drop shadow for the main folder */
+            box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.25);
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            width: 180px; 
+        }
+
+        .folder-tab {
+            text-align: center;
+            padding: 10px 0;
+            font-size: 17px;
+            font-weight: 500;
+            color: #380000;
+            width: 100%;
+            /* The distinct red divider line */
+            border-bottom: 2px solid #ff3232;
+        }
+
+        .folder-pills {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 10px 12px 10px;
+        }
+
+        .pill {
+            background-color: #380000;
+            width: 32px;
+            height: 125px;
+            /* Curved top-right and bottom-left, sharp top-left and bottom-right */
+            border-radius: 0 12px 0 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Drop shadow specifically for the inner boxes */
+            box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .pill span {
+            color: #fcebeb;
+            font-size: 11px;
+            font-weight: 400;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            letter-spacing: 0.5px;
+        }
+
+        /* Side text description and vertical line */
+        .text-content {
+            border-left: 1px solid currentColor; 
+            padding-left: 12px;
+            font-size: 11px;
+            line-height: 1.6;
+            margin-top: 40px; 
+            opacity: 0.9;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <div class="hero-section">
+        <div class="since-text">Since 2026</div>
+        <div class="brand-title">
+            <span class="phrase">PHRASE</span>
+            <span class="vantage">VANTAGE</span>
+        </div>
+
+        <div class="access-box">
+            <p>Get access to :</p>
+            <ol>
+                <li>400+ crucial professional choosen vocabularies.</li>
+                <li>All vocabs are choosen for 100 percent fluency</li>
+                <li>50 plus essential phrases.</li>
+                <li>All Phrases Choosen for 100 percent fluency</li>
+            </ol>
+        </div>
+
+        <div class="divider">
+            <div class="line"></div>
+            <span>Enhance Your English</span>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <!-- SECTION 1: Vocabularies (Light) -->
+    <div class="content-section light-bg">
+        <div class="row-layout">
+            <div class="folder-card">
+                <div class="folder-tab">Vocabularies</div>
+                <div class="folder-pills">
+                    <div class="pill"><span>All</span></div>
+                    <div class="pill"><span>Beginner</span></div>
+                    <div class="pill"><span>Intermediate</span></div>
+                    <div class="pill"><span>Advance</span></div>
+                </div>
+            </div>
+            <div class="text-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 2: Phrases (Dark) -->
+    <div class="content-section dark-bg">
+        <div class="row-layout">
+            <div class="folder-card">
+                <div class="folder-tab">Phrases</div>
+                <div class="folder-pills">
+                    <div class="pill"><span>All</span></div>
+                    <div class="pill"><span>Beginner</span></div>
+                    <div class="pill"><span>Intermediate</span></div>
+                    <div class="pill"><span>Advance</span></div>
+                </div>
+            </div>
+            <div class="text-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 3: Phrasal Verbs (Light) -->
+    <div class="content-section light-bg section-3">
+        <div class="row-layout">
+            <div class="folder-card">
+                <div class="folder-tab">Phrasal Verbs</div>
+                <div class="folder-pills">
+                    <div class="pill"><span>All</span></div>
+                    <div class="pill"><span>Beginner</span></div>
+                    <div class="pill"><span>Intermediate</span></div>
+                    <div class="pill"><span>Advance</span></div>
+                </div>
+            </div>
+            <div class="text-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 4: Stories (Dark) -->
+    <div class="content-section dark-bg section-4" style="box-shadow: none;">
+        <div class="row-layout">
+            <div class="folder-card">
+                <div class="folder-tab">Stories</div>
+                <div class="folder-pills">
+                    <div class="pill"><span>All</span></div>
+                    <div class="pill"><span>Beginner</span></div>
+                    <div class="pill"><span>Intermediate</span></div>
+                    <div class="pill"><span>Advance</span></div>
+                </div>
+            </div>
+            <div class="text-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
